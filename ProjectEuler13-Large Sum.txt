@@ -1,0 +1,22 @@
+Complete Project Euler #13. However, we will make the following 
+modifications to the problem:
+
+- Read all the large numbers from a file called "input.txt". We will use additional test cases with different numbers to test your algorithm.
+
+- You may assume the file exists. Though error checking is nice, we will not require it.
+
+- There will be anywhere from 0 to 200 numbers in the file.
+
+- The numbers may have anywhere from 1 to 50 digits.
+
+- The assignment must be done in Java. Name the class "LargeSum".
+
+There should be exactly two lines of output from your program.  
+Capitalization and spaces must be followed closely. 
+
+See below:
+Full sum: 1238561234576829475628947856287458923478362
+First 10 digits: 1238561234
+
+Submit LargeSum.java (not .class).  
+Make sure the name of every member of the team is in the source code and in the comments section on Canvas.  Only one submission per team is required.

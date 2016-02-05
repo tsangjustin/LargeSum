@@ -33,8 +33,8 @@ public class Main {
                 longest = (byte)line.length();
         }
 
-        short carry = 0;
-        short currDigit = 0;
+        int carry = 0;
+        int currDigit = 0;
         for (int i = 0; i < longest; i++){
             currDigit = carry;
             for (Byte[] ByteArray : ByteArrays) {
@@ -45,15 +45,25 @@ public class Main {
                 }
             }
             // now we have a sum of all the digits in the 'i'th place (from right-to-left)
-            digitStack.push((byte) (currDigit / 10));
-            carry = (short) (currDigit % 10);
+            if (currDigit >= 10) {
+                digitStack.push((byte) (currDigit / 10));
+                carry = (currDigit % 10);
+            }
+            else{
+                digitStack.push((byte) currDigit);
+                carry = 0;
+            }
         }
         while (carry != 0){ // carry any leftover remainder
-            System.out.println(carry);
-            digitStack.push((byte) (currDigit /= 10));
-            carry = (short) (currDigit % 10);
+            if (carry < 10){
+                digitStack.push((byte) (currDigit));
+                carry = 0;
+            }else {
+                digitStack.push((byte) (currDigit /= 10));
+                carry = (currDigit % 10);
+            }
         }
-        for (int i = 0; i < digitStack.size(); i++){
+        for (int i = digitStack.size()-1; i >= 0; i--){
             System.out.print(digitStack.get(i));
         }
     }

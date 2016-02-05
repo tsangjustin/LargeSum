@@ -1,3 +1,4 @@
+package com.company;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,7 +13,6 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-
         Stack<Byte> digitStack = new Stack<Byte>();
         BufferedReader br = new BufferedReader(new FileReader("input.txt"));
 
@@ -67,4 +67,5 @@ public class Main {
             System.out.print(digitStack.get(i));
         }
     }
+
 }

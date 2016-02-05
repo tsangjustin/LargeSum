@@ -32,7 +32,7 @@ public class Main {
             if (line.length() > longest)
                 longest = (byte)line.length();
         }
-        
+
         short carry = 0;
         short currDigit = 0;
         for (int i = 0; i < longest; i++){
@@ -49,8 +49,12 @@ public class Main {
             carry = (short) (currDigit % 10);
         }
         while (carry != 0){ // carry any leftover remainder
-            digitStack.push((byte) (currDigit / 10));
+            System.out.println(carry);
+            digitStack.push((byte) (currDigit /= 10));
             carry = (short) (currDigit % 10);
+        }
+        for (int i = 0; i < digitStack.size(); i++){
+            System.out.print(digitStack.get(i));
         }
     }
 }

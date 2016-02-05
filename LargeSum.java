@@ -10,7 +10,6 @@ import java.io.*;
 
 public class LargeSum {
 	public static void main(String[] args) throws IOException{
-		int sum = 0;
 		String[] myArr = {"0", "0", "0", "0"};
 		BufferedReader br = new BufferedReader(new FileReader("input.txt"));
 		try {
@@ -44,6 +43,13 @@ public class LargeSum {
 		} finally {
 			br.close();
 		}
-		System.out.println(myArr[3]);
+		String sumStr = "";
+		for (int i = 0; i < 4; i++) {
+			if (myArr[i] != "0") {
+				sumStr += myArr[i];
+			}
+		}
+		System.out.println(sumStr);
+		System.out.println(sumStr.substring(0, 10));
 	}
 }

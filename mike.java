@@ -1,4 +1,3 @@
-package com.company;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -33,8 +32,8 @@ public class Main {
                 longest = (byte)line.length();
         }
 
-        int carry = 0;
-        int currDigit = 0;
+        short carry = 0;
+        short currDigit = 0;
         for (int i = 0; i < longest; i++){
             currDigit = carry;
             for (Byte[] ByteArray : ByteArrays) {
@@ -45,25 +44,26 @@ public class Main {
                 }
             }
             // now we have a sum of all the digits in the 'i'th place (from right-to-left)
-            if (currDigit >= 10) {
-                digitStack.push((byte) (currDigit / 10));
-                carry = (currDigit % 10);
-            }
-            else{
-                digitStack.push((byte) currDigit);
-                carry = 0;
-            }
+            carry = (short) (currDigit / 10);
+            digitStack.push((byte) (currDigit %= 10));
+
         }
         while (carry != 0){ // carry any leftover remainder
+            currDigit = carry;
             if (carry < 10){
                 digitStack.push((byte) (currDigit));
                 carry = 0;
             }else {
-                digitStack.push((byte) (currDigit /= 10));
-                carry = (currDigit % 10);
+                carry = (short) (currDigit / 10);
+                digitStack.push((byte) (currDigit %= 10));
             }
         }
+        System.out.print("Full sum: ");
         for (int i = digitStack.size()-1; i >= 0; i--){
+            System.out.print(digitStack.get(i));
+        }
+        System.out.print("\nFirst 10 digits: ");
+        for (int i = digitStack.size()-1; i >= digitStack.size()-10; i--){
             System.out.print(digitStack.get(i));
         }
     }

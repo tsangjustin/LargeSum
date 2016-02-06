@@ -14,31 +14,40 @@ public class LargeSum {
 		BufferedReader br = new BufferedReader(new FileReader("input.txt"));
 		try {
 			String line;
-			int lenStr;
-
 			while ((line = br.readLine()) != null) {
+				int lenStr = line.length();
 				int index = 3;
 				String carry = "0";
-				lenStr = line.length();
-				while ((lenStr - 16) >= 0) {
+				while ((lenStr - 14) >= 0) {
 					String subStr = String.valueOf(Long.parseLong(myArr[index]) + 
-									Long.parseLong(line.substring(lenStr - 16, lenStr)) +
-									Long.parseLong(carry));
-					int lenSubStr = subStr.length();
-					if (lenSubStr > 16) {
-						carry = subStr.substring(0, 1);
-						myArr[index--] = subStr.substring(1, lenSubStr);
+									Long.parseLong(line.substring(lenStr - 14 , lenStr)) + 
+									Integer.parseInt(carry));
+					//System.out.println(myArr[index] + " " + line.substring(lenStr - 14 , lenStr) + " " + carry);
+					if (index > 0) {
+						//int lenSubStr = subStr.length();
+						if (subStr.length() > 14) {
+							//System.out.println(subStr.length());
+							carry = "1";
+							myArr[index] = subStr.substring(1, 15);
+						} else {
+							carry = "0";
+							myArr[index] = subStr;
+							//System.out.println(subStr.length());
+						}
+						index--;
 					} else {
-						myArr[index--] = subStr;
+						myArr[index] = subStr;
 					}
-					lenStr -= 16;
+					lenStr -= 14;
 					//TODO: Do memory size check for carry over?
 				}
 				if (lenStr > 0) {
 					myArr[index] = String.valueOf(Long.parseLong(myArr[index]) + 
-									 Long.parseLong(line.substring(0, lenStr)));
+								   Long.parseLong(line.substring(0, lenStr)) + 
+								   Integer.parseInt(carry));
+					//System.out.println(myArr[index] + " " + line.substring(0, lenStr) + " " + carry);
 				}
-				System.out.println(myArr[0] + " " + myArr[1] + " " + myArr[2] + " " + myArr[3]);
+				//System.out.println(myArr[0] + " " + myArr[1] + " " + myArr[2] + " " + myArr[3]);
 			}
 		} finally {
 			br.close();
@@ -49,7 +58,13 @@ public class LargeSum {
 				sumStr += myArr[i];
 			}
 		}
-		System.out.println(sumStr);
-		System.out.println(sumStr.substring(0, 10));
+		System.out.println("Full sum: " + sumStr);
+		int lenSumStr = sumStr.length();
+		if (lenSumStr > 10) {	
+			System.out.println("First 10 digits: " + sumStr.substring(0, 10));
+		} else {
+			System.out.println("First " + lenSumStr + " digits: " + 
+								sumStr.substring(0, lenSumStr));
+		}
 	}
 }

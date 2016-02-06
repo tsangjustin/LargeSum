@@ -13,7 +13,6 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-
         Stack<Byte> digitStack = new Stack<Byte>();
         BufferedReader br = new BufferedReader(new FileReader("input.txt"));
 
@@ -32,7 +31,7 @@ public class Main {
             if (line.length() > longest)
                 longest = (byte)line.length();
         }
-        
+
         short carry = 0;
         short currDigit = 0;
         for (int i = 0; i < longest; i++){
@@ -45,12 +44,28 @@ public class Main {
                 }
             }
             // now we have a sum of all the digits in the 'i'th place (from right-to-left)
-            digitStack.push((byte) (currDigit / 10));
-            carry = (short) (currDigit % 10);
+            carry = (short) (currDigit / 10);
+            digitStack.push((byte) (currDigit %= 10));
+
         }
         while (carry != 0){ // carry any leftover remainder
-            digitStack.push((byte) (currDigit / 10));
-            carry = (short) (currDigit % 10);
+            currDigit = carry;
+            if (carry < 10){
+                digitStack.push((byte) (currDigit));
+                carry = 0;
+            }else {
+                carry = (short) (currDigit / 10);
+                digitStack.push((byte) (currDigit %= 10));
+            }
+        }
+        System.out.print("Full sum: ");
+        for (int i = digitStack.size()-1; i >= 0; i--){
+            System.out.print(digitStack.get(i));
+        }
+        System.out.print("\nFirst 10 digits: ");
+        for (int i = digitStack.size()-1; i >= digitStack.size()-10; i--){
+            System.out.print(digitStack.get(i));
         }
     }
+
 }

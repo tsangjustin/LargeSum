@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 
-public class Main {
+public class LargeSum {
 
     public static Byte byteToByte(byte b){  // convert ASCII byte values into a Java Byte
         return (byte)(b-48);

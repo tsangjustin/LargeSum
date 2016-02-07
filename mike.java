@@ -12,11 +12,11 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        Stack<Byte> digitStack = new Stack<Byte>();
+        Stack<Byte> digitStack = new Stack<Byte>();     // byte stack to hold all digits of the final answer
         BufferedReader br = new BufferedReader(new FileReader("input.txt"));
 
         ArrayList<String> lines = new ArrayList<String>();
-        ArrayList<Byte[]> ByteArrays = new ArrayList<Byte[]>();
+        ArrayList<Byte[]> ByteArrays = new ArrayList<Byte[]>();     // holds a an array of Bytes for each line
 
         String line;
         byte longest = 0;
@@ -24,18 +24,18 @@ public class Main {
             byte[] byteArray = line.getBytes();
             Byte[] ByteArray = new Byte[line.length()];
             for (int i = 0; i < byteArray.length; i++) {
-                ByteArray[i] = byteToByte(byteArray[byteArray.length - (i+1)]);
+                ByteArray[i] = byteToByte(byteArray[byteArray.length - (i+1)]);     // populate array with Byte for each number in line
             }
             ByteArrays.add(ByteArray);  // reversed array of bytes for the number
             if (line.length() > longest)
-                longest = (byte)line.length();
+                longest = (byte)line.length();  // keep track of the longest line in the file
         }
 
         short carry = 0;
         short currDigit = 0;
-        for (int i = 0; i < longest; i++){
+        for (int i = 0; i < longest; i++){      // loop to iterate over numbers in the reversed line arrays
             currDigit = carry;
-            for (Byte[] ByteArray : ByteArrays) {
+            for (Byte[] ByteArray : ByteArrays) {   // for each array in the ArrayList
                 try {
                     currDigit += ByteArray[i];
                 } catch (Exception e) {
@@ -47,7 +47,7 @@ public class Main {
             digitStack.push((byte) (currDigit %= 10));
 
         }
-        while (carry != 0){ // carry any leftover remainder
+        while (carry != 0){ // take care of any leftover remainders
             currDigit = carry;
             if (carry < 10){
                 digitStack.push((byte) (currDigit));

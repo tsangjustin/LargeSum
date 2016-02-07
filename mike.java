@@ -24,7 +24,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new FileReader("input.txt"));
 
         ArrayList<String> lines = new ArrayList<String>();
-        ArrayList<Byte[]> ByteArrays = new ArrayList<Byte[]>();     // holds a an array of Bytes for each line
+        ArrayList<Byte[]> ByteArrays = new ArrayList<Byte[]>();     // holds an array of Bytes for each line
 
         String line;
         byte longest = 0;

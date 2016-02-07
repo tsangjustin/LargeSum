@@ -23,7 +23,6 @@ public class Main {
         Stack<Byte> digitStack = new Stack<Byte>();     // byte stack to hold all digits of the final answer
         BufferedReader br = new BufferedReader(new FileReader("input.txt"));
 
-        ArrayList<String> lines = new ArrayList<String>();
         ArrayList<Byte[]> ByteArrays = new ArrayList<Byte[]>();     // holds an array of Bytes for each line
 
         String line;

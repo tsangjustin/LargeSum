@@ -1,3 +1,11 @@
+/*******************************************************************************
+ * Name        : LargeSum.java
+ * Author      : Michael Curry, Daniel Heyman, and Justin Tsang
+ * Version     : 1.0
+ * Date        : 2/8/16
+ * Description : Get first ten digits of sum of numbers from text file
+ * Pledge      : I pledge my honor that I have abided by the Stevens Honor System
+ ******************************************************************************/
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
